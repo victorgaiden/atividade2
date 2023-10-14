@@ -29,6 +29,34 @@ app.post('/todos', (req, res) => {
     res.status(201).json(newTodo);
 });
 
+//Rota PUT para atualizar uma tarefa pelo ID
+app.put('/todos/:id', (req, res) => {
+    const idToUpdate = parseInt(req.params.id);
+    const updatedTask = req.body;
+
+    const index = todos.findIndex(todo => todo.id === idToUpdate)
+
+    if (index !== -1) {
+        todos[index] = updatedTask;
+        res.json(updatedTask);
+    } else {
+      res.status(404).json({ error: 'Tarefa não encontrada'}) ;       
+    }
+});
+
+//Rota DELETE para excluir uma tarefa pelo ID
+app.delete('/todos/:id', (req, res) => {
+    const idToDelete = parseInt(req.params.id);
+    const index = todos.findIndex(todo => todo.id === idToDelete)
+
+    if (index !== -1) {
+        todos.splice(index, 1);
+        res.status(204)
+        }else {
+      res.status(404).json({ error: 'Tarefa não encontrada'});       
+    }
+});
+
 app.post('/todos', (req, res) => {
 
 })
