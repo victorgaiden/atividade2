@@ -18,19 +18,19 @@ app.get('/', (req, res) => {
 });
 
 //ROTA GET
-app.get('/todos', (req, res) => {
+app.get('/users', (req, res) => {
     res.json(todos)
 });
 
 //ROTA POST
-app.post('/todos', (req, res) => {
+app.post('/users', (req, res) => {
     const newTodo = req.body;
     todos.push(newTodo);
     res.status(201).json(newTodo);
 });
 
 //Rota PUT para atualizar uma tarefa pelo ID
-app.put('/todos/:id', (req, res) => {
+app.put('/users/:id', (req, res) => {
     const idToUpdate = parseInt(req.params.id);
     const updatedTask = req.body;
 
@@ -45,7 +45,7 @@ app.put('/todos/:id', (req, res) => {
 });
 
 //Rota DELETE para excluir uma tarefa pelo ID
-app.delete('/todos/:id', (req, res) => {
+app.delete('/users/:id', (req, res) => {
     const idToDelete = parseInt(req.params.id);
     const index = todos.findIndex(todo => todo.id === idToDelete)
 
@@ -57,7 +57,7 @@ app.delete('/todos/:id', (req, res) => {
     }
 });
 
-app.post('/todos', (req, res) => {
+app.post('/users', (req, res) => {
 
 })
 
